@@ -45,6 +45,11 @@ app.post("/add-coffee", async (req, res) => {
     }
 })
 
+
+app.put("/update/:id", async(req,res)=>{
+    const id = req.params.id
+})
+
 app.listen(port, () => {
     console.log(`server is running at ${port}`);
 })
