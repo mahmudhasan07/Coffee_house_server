@@ -12,26 +12,35 @@ app.get('/', async (req, res) => {
 })
 
 const db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "curd"
+    host: "bcu9r9tzbhawxrrxvaak-mysql.services.clever-cloud.com",
+    user: "u9zo0lu8dxyok57k",
+    password: "l2y3SNogRCTG94up2ix2",
+    database: "bcu9r9tzbhawxrrxvaak"
 })
+
+db.connect((err) => {
+    if (err) {
+        console.error('Error connecting to MySQL:');
+        return;
+    }
+    console.log('Connected to MySQL database');
+});
 
 
 app.get('/coffees', async (req, res) => {
     const sql = "SELECT * FROM `coffee` "
     db.query(sql, (err, data) => {
+        // console.log(data);
+        res.send(data)
         if (err) {
             return res.send("Error")
         }
-        res.send(data)
     })
 })
 
 app.post("/add-coffee", async (req, res) => {
     const curd = req.body
-    // console.log(data);
+    console.log(curd);
     const sql = "INSERT INTO coffee(`Coffee_name`, `Coffee_price`, `Coffee_image`, `Coffee_note`) VALUES(?)"
     if (curd) {
         const values = [curd?.name, curd?.price, curd?.imgbbURL, curd?.note]
@@ -40,7 +49,7 @@ app.post("/add-coffee", async (req, res) => {
                 return res.send("don't add in database")
             }
             res.send("success")
-            console.log(values);
+            // console.log(values); 
         })
     }
 })
