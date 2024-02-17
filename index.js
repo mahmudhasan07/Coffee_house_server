@@ -18,13 +18,12 @@ const db = mysql.createConnection({
     database: "bcu9r9tzbhawxrrxvaak"
 })
 
-db.connect((err) => {
-    if (err) {
-        console.error('Error connecting to MySQL:');
-        return;
-    }
-    console.log('Connected to MySQL database');
-});
+// db.connect((err) => {
+//     if (err) {
+//         console.error('Error connecting to MySQL:');
+//     }
+//     console.log('Connected to MySQL database');
+// });
 
 
 app.get('/coffees', async (req, res) => {
@@ -57,6 +56,9 @@ app.post("/add-coffee", async (req, res) => {
 
 app.put("/update/:id", async(req,res)=>{
     const id = req.params.id
+    const data = req.body.data
+    console.log(data);
+    console.log(id);
 })
 
 app.listen(port, () => {
