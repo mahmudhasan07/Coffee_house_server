@@ -72,6 +72,10 @@ app.put("/update/:id", async (req, res) => {
     const sql = "UPDATE `coffee` SET `ID`='[value-1]',`Coffee_name`='[value-2]',`Coffee_price`='[value-3]',`Coffee_image`='[value-4]',`Coffee_note`='[value-5]' WHERE 1"
 })
 
+app.delete('/coffees/:id',async(req,res)=>{
+    
+})
+
 app.listen(port, () => {
     console.log(`server is running at ${port}`);
 })
