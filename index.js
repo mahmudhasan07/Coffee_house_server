@@ -26,6 +26,18 @@ const db = mysql.createConnection({
 // });
 
 
+app.get("/coffees/:id", async (req, res) => {
+    const id = req.params.id
+    const sql = 'SELECT * FROM `coffee` WHERE id =?'
+    db.query(sql, [id], ( error, data) => {
+        res.send(...data)
+        // console.log(...data);
+        if (error) {
+            console.log(error);
+        }
+    })
+})
+
 app.get('/coffees', async (req, res) => {
     const sql = "SELECT * FROM `coffee` "
     db.query(sql, (err, data) => {
@@ -54,11 +66,10 @@ app.post("/add-coffee", async (req, res) => {
 })
 
 
-app.put("/update/:id", async(req,res)=>{
+app.put("/update/:id", async (req, res) => {
     const id = req.params.id
     const data = req.body.data
-    console.log(data);
-    console.log(id);
+    const sql = "UPDATE `coffee` SET `ID`='[value-1]',`Coffee_name`='[value-2]',`Coffee_price`='[value-3]',`Coffee_image`='[value-4]',`Coffee_note`='[value-5]' WHERE 1"
 })
 
 app.listen(port, () => {
