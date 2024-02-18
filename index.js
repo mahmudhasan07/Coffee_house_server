@@ -69,11 +69,20 @@ app.post("/add-coffee", async (req, res) => {
 app.put("/update/:id", async (req, res) => {
     const id = req.params.id
     const data = req.body.data
-    const sql = "UPDATE `coffee` SET `ID`='[value-1]',`Coffee_name`='[value-2]',`Coffee_price`='[value-3]',`Coffee_image`='[value-4]',`Coffee_note`='[value-5]' WHERE 1"
+    const sql = "UPDATE `coffee` SET `Coffee_name`='[value-2]',`Coffee_price`='[value-3]',`Coffee_image`='[value-4]',`Coffee_note`='[value-5]' WHERE ID=?"
+    
 })
 
 app.delete('/coffees/:id',async(req,res)=>{
-    
+  const id = req.params.id
+  const sql = "DELETE FROM `coffee` WHERE ID=?"  
+  db.query=(sql, [id], (data,error)=>{
+    res.send(data)
+    if(error){
+        res.send(error)
+        return
+    }
+  })
 })
 
 app.listen(port, () => {
